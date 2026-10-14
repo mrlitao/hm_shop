@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hm_shop/api/home.dart';
 import 'package:hm_shop/pages/Home/components/HmBanner.dart';
 import 'package:hm_shop/pages/Home/components/HmCategory.dart';
 import 'package:hm_shop/pages/Home/components/HmHot.dart';
@@ -19,27 +20,27 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final List<BannerItem> _banners = [
-    BannerItem(
-      id: "1",
-      imgUrl:
-          "https://gips2.baidu.com/it/u=122592237,1590356808&fm=3074&app=3074&f=PNG?w=2560&h=1440",
-    ),
-    BannerItem(
-      id: "2",
-      imgUrl:
-          "https://img2.baidu.com/it/u=1061400568,287117462&fm=253&app=120&f=JPEG?w=1422&h=800",
-    ),
-    BannerItem(
-      id: "3",
-      imgUrl:
-          "https://img1.baidu.com/it/u=1429816280,399532766&fm=253&app=120&f=JPEG?w=1422&h=800",
-    ),
-    BannerItem(
-      id: "4",
-      imgUrl:
-          "https://img1.baidu.com/it/u=3864742034,3939810037&fm=253&fmt=auto&app=120&f=JPEG?w=1422&h=800",
-    ),
+  List<BannerItem> _banners = [
+    // BannerItem(
+    //   id: "1",
+    //   imgUrl:
+    //       "https://gips2.baidu.com/it/u=122592237,1590356808&fm=3074&app=3074&f=PNG?w=2560&h=1440",
+    // ),
+    // BannerItem(
+    //   id: "2",
+    //   imgUrl:
+    //       "https://img2.baidu.com/it/u=1061400568,287117462&fm=253&app=120&f=JPEG?w=1422&h=800",
+    // ),
+    // BannerItem(
+    //   id: "3",
+    //   imgUrl:
+    //       "https://img1.baidu.com/it/u=1429816280,399532766&fm=253&app=120&f=JPEG?w=1422&h=800",
+    // ),
+    // BannerItem(
+    //   id: "4",
+    //   imgUrl:
+    //       "https://img1.baidu.com/it/u=3864742034,3939810037&fm=253&fmt=auto&app=120&f=JPEG?w=1422&h=800",
+    // ),
   ];
 
   List<Widget> _getSliverChildren() {
@@ -79,6 +80,17 @@ class _HomeViewState extends State<HomeView> {
 
       HmMoreList(),
     ];
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getBanners();
+  }
+
+  void _getBanners() async {
+    _banners = await queryBanners();
+    setState(() {});
   }
 
   @override
